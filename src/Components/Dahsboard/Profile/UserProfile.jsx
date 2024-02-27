@@ -26,7 +26,7 @@ const UserProfile = () => {
 
 
         axios
-            .get(`http://localhost:4000/user/getUser/${id}`, { headers })
+            .get(`https://instagram-server-6onu.onrender.com/user/getUser/${id}`, { headers })
             .then(async (res) => {
                 setUser(res.data)
                 console.log(res.data);

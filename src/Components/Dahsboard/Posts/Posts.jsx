@@ -8,11 +8,10 @@ import axios from 'axios';
 import UseLike from '../../../hooks/UseLike';
 import CommentModal from '../../../modals/CommentModal';
 
-const Posts = ({ token,data }) => {
+const Posts = ({ token,data,loading }) => {
   const { like, unLike } = UseLike();
   const [user, setUser] = useState({});
   const [modalStates, setModalStates] = useState({});
-  const [loading,setLoading] = useState(true);
 
   const headers = {
     Authorization: token,
@@ -48,14 +47,12 @@ const Posts = ({ token,data }) => {
     }));
   };
 
+  
   return (
     <Container className='bg-black container-fluid d-flex flex-column gap-3' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '100px 0px 100px 100px' }}>
       {
-        data.length === 0 ?
-        (
-          <>
-          <h1>Posts not found!</h1>
-          </>
+        loading ? (
+          <h1>Loading....</h1>
         ):
       data.map((item) => (
         <Card key={item._id} style={{ width: '500px', height: 'auto' }}>

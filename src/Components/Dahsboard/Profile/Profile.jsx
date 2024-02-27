@@ -26,12 +26,13 @@ const Profile = () => {
         axios.get("https://instagram-server-6onu.onrender.com/post", { headers })
             .then((res) => {
                 setPosts(res.data.filter((post) => post.user.name === user.name));
+                console.log("posts",res.data.filter((post) => post.user.name === user.name));
                 setLoading(false)
             }).catch((e) => {
                 console.log(e);
             })
 
-    }, [token]);
+    }, [token,user]);
 
     const toDashboard = () => {
         navigate(`/dashboard/${token}`)
@@ -51,7 +52,6 @@ const Profile = () => {
                 window.location.reload();
             })
     }
-    console.log("posts", posts);
     return (
 
         <>
@@ -117,7 +117,7 @@ const Profile = () => {
                                     posts.map((item) => {
                                         return (
                                             <>
-                                                <Card style={{ cursor: 'pointer', width: "300px", height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                                <Card key={item._id} style={{ cursor: 'pointer', width: "300px", height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                     <DeleteIcon style={{ position: "absolute", top: "10px", left: "20px", color: "red" }} onClick={() => handleDeletePost(item._id)} />
                                                     <Card.Img width={"100%"} height={'300px'} style={{ objectFit: 'cover' }} src={`https://instagram-server-6onu.onrender.com/image/${item._id}`} />
                                                 </Card>

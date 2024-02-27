@@ -9,7 +9,7 @@ const Dashboard = () => {
   const {token} = useParams();
   const [user,setUser]= useState([]);
   const [data, setData] = useState([]);
-
+  const [loading,setLoading] = useState(true);
 
   useEffect(() => {
     const headers = {
@@ -25,6 +25,7 @@ const Dashboard = () => {
     axios.get('https://instagram-server-6onu.onrender.com/post',{headers})
     .then((res) => {
       setData(res.data);
+      setLoading(false)
     }).catch((e) => {
       console.log(e);
     })
@@ -35,7 +36,7 @@ const Dashboard = () => {
   return (
     <div className='d-flex p-0 bg-black' style={{alignItems:'center'}}>
         <Header user={user} token={token}/>
-        <Posts  user={user}  token={token} data={data}/>
+        <Posts  user={user}  token={token} data={data} loading={loading}/>
         <Supbar user={user} token={token}/>
     </div>
   )
