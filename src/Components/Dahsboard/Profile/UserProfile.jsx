@@ -154,7 +154,6 @@ const UserProfile = () => {
                                     return (
                                         <>
                                             <Card key={item._id} style={{ cursor: 'pointer', width: "300px", height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                            <DeleteIcon style={{ position: "absolute", top: "10px", left: "20px", color: "red" }} onClick={() => handleDeletePost(item._id)} />
                                                 <Card.Img width={"100%"} height={'300px'} style={{ objectFit: 'cover' }} src={`https://instagram-server-6onu.onrender.com/image/${item._id}`} />
                                             </Card>
                                         </>
